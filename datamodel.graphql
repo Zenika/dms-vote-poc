@@ -1,5 +1,5 @@
 type Vote {
-  id: Int!
+  id: UUID! @unique
   value: String
   employeeUUID: String
 }
