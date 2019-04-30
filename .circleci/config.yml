@@ -1,0 +1,23 @@
+version: 2
+
+jobs:
+  dev-prisma-deploy:
+    docker:
+      - image: circleci/node:10
+    environment:
+      PRISMA_SERVICE: dms-vote-poc
+      PRISMA_STAGE: dev
+    steps:
+      - checkout
+      - run: PRISMA_ENDPOINT=$BEAM_SPLITTER_BASE_URL/$PRISMA_SERVICE/$PRISMA_STAGE npx prisma deploy
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - dev-prisma-deploy:
+          context: beam-splitter
+          filters:
+            branches:
+              only:
+                - master

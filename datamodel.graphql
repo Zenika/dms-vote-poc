@@ -1,0 +1,5 @@
+type Vote {
+  id: Int!
+  value: String
+  employeeUUID: String
+}
